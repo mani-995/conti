@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Transactions</title>
+    <style>
+        /* Global Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Transaction Container */
+        .transaction-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Compact Card Style */
+        .transaction-entry {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+            text-align: left;
+            height: 120px;
+            position: relative;
+        }
+
+        .transaction-entry:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 5px 12px rgba(0, 255, 204, 0.4);
+        }
+
+        /* Transaction Details for Pop-Out */
+        .transaction-entry h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #00ffcc;
+        }
+
+        .transaction-entry p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        /* Hidden Details - Initially Hidden */
+        .transaction-entry .details {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            width: calc(100% - 40px);
+            z-index: 10;
+            font-size: 14px;
+            color: white;
+        }
+
+        .transaction-entry.show-details .details {
+            display: block;
+        }
+
+        /* Transaction Pop-out Animation */
+        @keyframes popOut {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Delete Button */
+        .delete-btn {
+            background-color: #ff4757;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #e84118;
+        }
+
+        /* Back Button */
+        .btn {
+            background-color: #00ffcc;
+            color: white;
+            padding: 8px 15px;
+            font-size: 14px;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #00cc99;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>📜 Saved Transactions</h2>
+
+<div id="savedTransactions" class="transaction-container">
+    <!-- Saved transactions will be displayed here -->
+</div>
+
+<a href="index 2.html" class="btn">🔙 Back to Main</a>
+
+<script>
+// Retrieve the saved transactions from localStorage
+let savedTransactions = JSON.parse(localStorage.getItem("savedTransactions")) || [];
+
+// Function to display saved transactions
+function displaySavedTransactions() {
+    let savedTransactionsDiv = document.getElementById("savedTransactions");
+    savedTransactionsDiv.innerHTML = ""; // Clear any existing content
+
+    if (savedTransactions.length === 0) {
+        savedTransactionsDiv.innerHTML = "<p>No saved transactions found.</p>";
+        return;
+    }
+
+    savedTransactions.forEach((transaction, index) => {
+        let transactionDiv = document.createElement("div");
+        transactionDiv.classList.add("transaction-entry");
+
+        let contributionsList = transaction.contributions
+            .map(c => `<p>${c.name}: ₹${c.amount.toFixed(2)}</p>`)
+            .join("");
+
+        transactionDiv.innerHTML = `
+            <h4>📍 ${transaction.location} - ${transaction.date}</h4>
+            <p><strong>Total:</strong> ₹${transaction.total.toFixed(2)}</p>
+            <p><strong>Per Person:</strong> ₹${transaction.perPerson}</p>
+            <div class="details">
+                <p><strong>Contributions:</strong></p>
+                ${contributionsList}
+            </div>
+            <button class="delete-btn" onclick="deleteTransaction(${index})">🗑️ Delete</button>
+        `;
+
+        transactionDiv.addEventListener("click", function() {
+            transactionDiv.classList.toggle("show-details");
+        });
+
+        savedTransactionsDiv.appendChild(transactionDiv);
+    });
+}
+
+// Function to delete a saved transaction
+function deleteTransaction(index) {
+    // Remove the transaction at the specified index
+    savedTransactions.splice(index, 1);
+
+    // Save the updated list back to localStorage
+    localStorage.setItem("savedTransactions", JSON.stringify(savedTransactions));
+
+    // Refresh the displayed transactions
+    displaySavedTransactions();
+}
+
+// Call the function to display the transactions when the page loads
+document.addEventListener("DOMContentLoaded", displaySavedTransactions);
+</script>
+
+</body>
+</html>

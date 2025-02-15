@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend Contribution Splitter</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for the page */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .total-container {
+            margin-bottom: 20px;
+        }
+
+        .input-section input, .input-section button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #contributionsTable {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #contributionsTable th, #contributionsTable td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .buttons button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #splitResults {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .view-list-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-list-btn:hover {
+            background-color: #007B9F;
+        }
+
+        #savedSummary {
+            margin-top: 30px;
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            width: 80%;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .transaction-summary {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .transaction-summary h3 {
+            margin: 0;
+        }
+
+        /* Styling for Back to Main Button */
+        .back-to-main-btn {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .back-to-main-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #141e30;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .buttons button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .back-to-main-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>💰 Contribution Splitter</h1>
+
+        <div class="total-container">
+            <h2 id="totalAmount">Total Spent: ₹0.00</h2>
+            <h3 id="perPersonAmount">Amount Per Person: ₹0.00</h3>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="friendName" placeholder="Enter friend's name" required>
+            <input type="number" id="friendAmount" placeholder="Enter amount (₹)" required min="0.01">
+            <button onclick="addContribution()">➕ Add</button>
+        </div>
+
+        <table id="contributionsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contribution (₹)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="contributionsList"></tbody>
+        </table>
+
+        <div class="buttons">
+            <button onclick="calculateSplit()" class="primary-btn">📊 Calculate Split</button>
+            <button onclick="resetContributions()" class="secondary-btn">🔄 Reset</button>
+            <!-- Added Save to List Button -->
+            <button onclick="saveTransactionSummary()" class="primary-btn">💾 Save to List</button>
+        </div>
+
+        <div id="splitResults">
+            <h2>💰 Who Pays Whom</h2>
+            <div id="splitList"></div> <!-- Who Pays Whom List Here -->
+        </div>
+
+        <!-- New area to display saved transaction summary -->
+        <div id="savedSummary">
+            <!-- Back to Main Button -->
+            <button class="back-to-main-btn" onclick="window.location.href='index%202.html'">🔙 Back to Main</button>
+        </div>
+
+    </div>
+
+    <!-- View List Button positioned at the top-right corner -->
+    <button id="viewListButton" class="view-list-btn" onclick="window.location.href='saved-transactions.html'">👁️ View List</button>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>🌐 Owner: Quantumcity</p>
+        <p style="font-size: 12px; color: #bbb;">⚠️ This website is currently under development. Expect some minor bugs or issues during use.</p>
+    </footer>    
+
+    <script src="script.js"></script>
+</body>
+</html>

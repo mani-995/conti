@@ -1,0 +1,349 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/* Container with Glassmorphism Effect */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    margin: 40px auto;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #00ffcc;
+    box-shadow: 0px 0px 8px #00ffcc;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Buttons */
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+/* Neon Button Effect */
+.primary-btn {
+    background: #0f0c29;
+    color: white;
+    box-shadow: 0px 0px 10px #00ffcc;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    box-shadow: 0px 0px 20px #00ffcc;
+    transform: scale(1.05);
+}
+
+.secondary-btn {
+    background: #ff4757;
+    color: white;
+    box-shadow: 0px 0px 10px #ff4757;
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    box-shadow: 0px 0px 20px #ff4757;
+    transform: scale(1.05);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: white;
+}
+
+th {
+    background: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+/* Split Results Section */
+#splitResults {
+    margin-top: 20px;
+    padding: 15px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 204, 0.5);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+    color: white;
+}
+
+/* Per Person Amount */
+#perPersonAmount {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #ffcc00;
+    box-shadow: 0px 0px 8px #ffcc00;
+    margin-top: 10px;
+}
+
+/* Individual Split Entry */
+.split-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+    background: #333;
+    color: white;
+}
+
+/* Alignment Fix: Who Pays Whom */
+.split-entry span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.arrow {
+    flex: 0.2;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+/* Hover Effects */
+.split-entry:hover {
+    transform: scale(1.05);
+    background: #444;
+}
+
+/* Who Pays */
+.negative {
+    background: rgba(255, 77, 77, 0.2);
+    color: #ff4d4d;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid #ff4d4d;
+    transition: 0.3s;
+}
+
+/* Who Receives */
+.positive {
+    background: rgba(0, 200, 81, 0.2);
+    color: #00c851;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid #00c851;
+    transition: 0.3s;
+}
+
+/* Display Total Amount in a Cool Style */
+#totalAmount {
+    background: rgba(0, 255, 204, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ffcc;
+    box-shadow: 0px 0px 10px #00ffcc;
+    margin-bottom: 10px;
+}
+
+/* Edit & Delete Buttons */
+.action-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 2px;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.edit-btn:hover {
+    background-color: #e6b800;
+    transform: scale(1.1);
+}
+
+/* Glassmorphism Delete Button */
+.delete-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+.delete-btn:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(255, 87, 34, 0.7);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* View List Button (Top-Right Corner) */
+.view-list-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-list-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.transaction-summary {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.transaction-entry {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    height: 120px;
+    position: relative;
+}
+
+.transaction-entry:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 12px rgba(0, 255, 204, 0.4);
+}
+
+/* Styling for the delete button to always show */
+.delete-btn {
+    background-color: #ff4757;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #e84118;
+}
+
+.transaction-card {
+    font-weight: bold;
+}
+
+.contributions-list {
+    display: none; /* Hide contributions by default */
+    margin-top: 10px;
+}
+
+.contributions-list.show {
+    display: block; /* Show contributions when toggled */
+}
